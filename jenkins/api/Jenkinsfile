@@ -25,6 +25,14 @@ pipeline {
         sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
       }
     }
+
+    stages {
+      stage("Deploy") {
+        withCredentials([sshKey(credentialsId: 'ssh-key', sshKeyVariable: 'SSH_KEY')]) {
+          sh "ssh -i $SSH_KEY ubuntu@54.255.224.142 './jenkins/api/deploy.sh'"
+        }
+      }
+    }
   }
 
   post {
