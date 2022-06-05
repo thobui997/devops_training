@@ -27,8 +27,10 @@ pipeline {
     }
 
     stage("Deploy") {
-      withCredentials([sshKey(credentialsId: 'ssh-key', sshKeyVariable: 'SSH_KEY')]) {
-        sh "ssh -i $SSH_KEY ubuntu@54.255.224.142 './jenkins/api/deploy.sh'"
+      steps{
+        withCredentials([sshKey(credentialsId: 'ssh-key', sshKeyVariable: 'SSH_KEY')]) {
+          sh "ssh -i $SSH_KEY ubuntu@54.255.224.142 './jenkins/api/deploy.sh'"
+        }
       }
     }
   }
