@@ -1,0 +1,17 @@
+pipeline {
+
+  agent none
+
+  enviroment {
+    DOCKER_IMAGE =  "thobui2105/my-api"
+  }
+
+  stages {
+    stage("Build") {
+      agent {
+        
+      }
+    }
+  }
+
+}
