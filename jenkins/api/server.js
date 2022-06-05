@@ -3,7 +3,7 @@ const app = express();
 const PORT = 5000;
 
 app.get('/api/hello', function (req, res) {
-	res.send('Hello World, I am API');
+	res.send('Hello World, I am API with Jenkins');
 });
 
 app.listen(PORT, () => {
