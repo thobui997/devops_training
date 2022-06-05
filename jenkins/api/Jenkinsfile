@@ -35,7 +35,7 @@ pipeline {
       // }
       steps{
         sshagent(credentials:['ssh-remote']) {
-          sh "ssh -o StrictHostKeyChecking=no -l ubuntu 54.255.224.142 './jenkins/api/deploy.sh'"
+          sh "ssh -o StrictHostKeyChecking=no -l ubuntu 54.255.224.142 '/home/ubuntu/deploy.sh'"
         }
       }
     }
