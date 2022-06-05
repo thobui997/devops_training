@@ -2,8 +2,8 @@ pipeline {
 
   agent none
 
-  enviroment {
-    DOCKER_IMAGE =  "thobui2105/my-api"
+  environment {
+    DOCKER_IMAGE = "thobui2105/my-api"
   }
 
   stages {
@@ -11,7 +11,7 @@ pipeline {
       agent {
         node {label 'master'}
       }
-      enviroment {
+      environment {
         DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0,7)}"
       }
       steps {
