@@ -1,0 +1,54 @@
+{
+	"users": [
+		{
+			"name": "thobt",
+			"password": "thobt123",
+			"tags": "administrator"
+		}
+	],
+	"vhosts": [
+		{
+			"name": "/"
+		}
+	],
+	"permissions": [
+		{
+			"user": "thobt",
+			"vhost": "/",
+			"configure": ".*",
+			"write": ".*",
+			"read": ".*"
+		}
+	],
+	"parameters": [],
+	"policies": [],
+	"exchanges": [
+		{
+			"name": "thobt.exchange",
+			"vhost": "/",
+			"type": "fanout",
+			"durable": true,
+			"auto_delete": false,
+			"internal": false,
+			"arguments": {}
+		}
+	],
+	"queues": [
+		{
+			"name": "thobt.test",
+			"vhost": "/",
+			"durable": true,
+			"auto_delete": false,
+			"arguments": {}
+		}
+	],
+	"bindings": [
+		{
+			"source": "thobt.exchange",
+			"vhost": "/",
+			"destination": "thobt.test",
+            "destination_type": "queue",
+			"routing_key": "thobt.test.#"
+		}
+	]
+}
