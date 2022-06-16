@@ -3,6 +3,9 @@ version: '3.8'
 networks:
   my_network:
     driver: bridge
+  monitoring_global:
+    external: true
+
 services:
   rabbitmq:
     container_name: rabbitmq
@@ -21,6 +24,9 @@ services:
     environment:
       - EMQX_DASHBOARD__DEFAULT_USER__LOGIN=thobt
       - EMQX_DASHBOARD__DEFAULT_USER__PASSWORD=thobt123
+      - EMQX_LOADED_PLUGINS=emqx_prometheus
+      - EMQX_PROMETHEUS__PUSH__GATEWAY__SERVER=http://pushgateway:9091
+      - EMQX_PROMETHEUS__INTERVAL=15000
     ports:
       - 18083:18083
       - 1883:1883
@@ -29,6 +35,7 @@ services:
       - 8084:8084
     networks:
       - my_network
+      - monitoring_global
 
   publisher:
     container_name: publisher
