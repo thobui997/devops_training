@@ -5,6 +5,7 @@ networks:
     driver: bridge
   monitoring_global:
     external: true
+  rabbit_network:
 
 services:
   rabbitmq:
@@ -15,8 +16,10 @@ services:
     ports:
       - 15672:15672
       - 5672:5672
+      - 15692:15692
     networks:
       - my_network
+      - rabbit_network
 
   emqx:
     image: emqx/emqx:latest

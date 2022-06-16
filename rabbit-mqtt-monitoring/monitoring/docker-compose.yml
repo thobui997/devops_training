@@ -4,6 +4,8 @@ networks:
   monitoring:
     driver: bridge
   global:
+  rabbit-mqtt-monitoring_rabbit_network:
+    external: true
 
 volumes:
   prometheus_data: {}
@@ -45,6 +47,7 @@ services:
     networks:
       - monitoring
       - global
+      - rabbit-mqtt-monitoring_rabbit_network
 
   grafana:
     image: grafana/grafana:latest
